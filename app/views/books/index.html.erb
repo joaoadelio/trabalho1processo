@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Numberpages</th>
+      <th>Disciplinas</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,11 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.numberPages %></td>
+        <td>
+          <% book.disciplines.order(:name).each do |discipline|%>
+            <%=discipline.name %><span>, </span>
+          <%end%>
+        </td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

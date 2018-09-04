@@ -26,6 +26,14 @@
     <%= form.number_field :numberPages, id: :book_numberPages %>
   </div>
 
+  <div class="field">
+    <%= form.label "Disiciplinas" %>
+    <% @disciplines.each do|discipline|%>
+      <%= check_box_tag "book[discipline_ids][]", discipline.id, @book.disciplines.include?(discipline) %>
+      <%= discipline.name %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
