@@ -1,0 +1,22 @@
+<%= form_with(model: bookcase, local: true) do |form| %>
+  <% if bookcase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bookcase.errors.count, "error") %> prohibited this bookcase from being saved:</h2>
+
+      <ul>
+      <% bookcase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :bookcase_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
