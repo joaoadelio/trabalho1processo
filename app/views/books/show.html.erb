@@ -16,9 +16,14 @@
 </p>
 
 <p>
+  <strong>Disciplinas:</strong>
   <% @book.disciplines.order(:name).each do |discipline|%>
     <%=discipline.name %><span>, </span>
   <%end%>
+</p>
+<p>
+  <strong>Linguagem:</strong>
+  <%= @book.language.name %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |

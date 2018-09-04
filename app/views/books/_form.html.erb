@@ -28,10 +28,15 @@
 
   <div class="field">
     <%= form.label "Disiciplinas" %>
-    <% @disciplines.each do|discipline|%>
+    <% Discipline.all.order(:name).each do|discipline|%>
       <%= check_box_tag "book[discipline_ids][]", discipline.id, @book.disciplines.include?(discipline) %>
       <%= discipline.name %>
     <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Linguagem" %>
+    <%= form.select :language_id, Language.all.order(:name).collect {|linguagem| [linguagem.name, linguagem.id]} %>
   </div>
 
   <div class="actions">
