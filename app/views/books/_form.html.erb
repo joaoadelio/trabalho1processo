@@ -39,6 +39,11 @@
     <%= form.select :language_id, Language.all.order(:name).collect {|linguagem| [linguagem.name, linguagem.id]} %>
   </div>
 
+  <div class="field">
+    <%= form.label "Estante" %>
+    <%= form.select :bookcase_id, Bookcase.all.order(:name).collect {|estante| [estante.name, estante.id]} %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -4,12 +4,13 @@
 
 <table>
   <thead>
+  <th>Author</th>
     <tr>
       <th>Title</th>
-      <th>Author</th>
       <th>Numberpages</th>
       <th>Disciplinas</th>
       <th>Linguagem</th>
+      <th>Estante</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
           <%end%>
         </td>
         <td><%= book.language.name %></td>
+        <td><%= book.bookcase.name %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
