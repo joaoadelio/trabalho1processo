@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Biblioteca</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @bookcases.each do |bookcase| %>
       <tr>
         <td><%= bookcase.name %></td>
+        <td><%= bookcase.library.name %></td>
         <td><%= link_to 'Show', bookcase %></td>
         <td><%= link_to 'Edit', edit_bookcase_path(bookcase) %></td>
         <td><%= link_to 'Destroy', bookcase, method: :delete, data: { confirm: 'Are you sure?' } %></td>

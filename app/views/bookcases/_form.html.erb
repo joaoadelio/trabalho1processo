@@ -16,6 +16,11 @@
     <%= form.text_field :name, id: :bookcase_name %>
   </div>
 
+  <div class="field">
+    <%= form.label "Biblioteca" %>
+    <%= form.select :library_id, Library.all.order(:name).collect {|biblioteca| [biblioteca.name, biblioteca.id]} %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

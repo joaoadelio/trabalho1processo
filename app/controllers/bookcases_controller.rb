@@ -69,6 +69,6 @@ class BookcasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookcase_params
-      params.require(:bookcase).permit(:name)
+      params.require(:bookcase).permit(:name, :library_id)
     end
 end
