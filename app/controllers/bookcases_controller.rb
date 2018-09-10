@@ -1,5 +1,7 @@
 class BookcasesController < ApplicationController
   before_action :set_bookcase, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource :except => [:homepage]
 
   # GET /bookcases
   # GET /bookcases.json
@@ -25,6 +27,7 @@ class BookcasesController < ApplicationController
   # POST /bookcases.json
   def create
     @bookcase = Bookcase.new(bookcase_params)
+    @bookcase.user_id = current_user.id
 
     respond_to do |format|
       if @bookcase.save

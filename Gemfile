@@ -7,6 +7,8 @@ end
 
 gem 'devise'
 
+gem 'cancancan', '~> 2.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'

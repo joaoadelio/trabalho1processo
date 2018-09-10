@@ -1,5 +1,7 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource :except => [:homepage]
 
   # GET /libraries
   # GET /libraries.json
@@ -25,6 +27,7 @@ class LibrariesController < ApplicationController
   # POST /libraries.json
   def create
     @library = Library.new(library_params)
+    @library.user_id = current_user.id
 
     respond_to do |format|
       if @library.save

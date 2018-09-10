@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Biblioteca</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test menu</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+      <tr>
+
+        <td><%= link_to 'Library', libraries_path(@librarie) %></td>
+        <td><%= link_to 'Discipline', disciplines_path(@discipline) %></td>
+        <td><%= link_to 'Books', books_path(@book) %></td>
+        <td><%= link_to 'Bookcases', bookcases_path(@bookcase) %></td>
+        <td><%= link_to 'Languages', languages_path(@language) %></td>
+
+      </tr>
+
+  </tbody>
+</table>
+
+
