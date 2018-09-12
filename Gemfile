@@ -23,6 +23,16 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Adicionado para bootstrap (Vinicios)
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
+
+# Adicionado o rails Admin (Vinicios)
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', github: 'sferik/rails_admin'
+gem 'rails_admin_rollincode', '1.0'
+gem "devise"
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
