@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label "Empréstimo" %>
+    <%= form.select :loan_id, Loan.all.order(:returnDate).collect {|emprestimo| ['Nome: ' + emprestimo.user.name + ' / Livro: ' + emprestimo.book.title, emprestimo.id]} %>
+  </div>
+
+  <div class="field">
     <%= form.label :devolutionDate %>
     <%= form.date_select :devolutionDate, id: :devolution_devolutionDate %>
   </div>

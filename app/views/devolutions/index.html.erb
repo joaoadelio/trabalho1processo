@@ -5,7 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Devolutiondate</th>
+      <th>Livro</th>
+      <th>Usuário</th>
+      <th>Emprestado em</th>
+      <th>Devolvido em</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,6 +16,9 @@
   <tbody>
     <% @devolutions.each do |devolution| %>
       <tr>
+        <td><%= devolution.loan.book.title %></td>
+        <td><%= devolution.loan.user.name %></td>
+        <td><%= devolution.loan.loanDate %></td>
         <td><%= devolution.devolutionDate %></td>
         <td><%= link_to 'Show', devolution %></td>
         <td><%= link_to 'Edit', edit_devolution_path(devolution) %></td>
