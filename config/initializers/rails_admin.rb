@@ -1,5 +1,6 @@
 RailsAdmin.config do |config|
 
+  config.main_app_name = ["Trabalho 1", "Processo de Softwares"]
   ### Popular gems integration
 
   ## == Devise ==
