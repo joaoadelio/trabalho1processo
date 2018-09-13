@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Bookingstartdate:</strong>
+  <strong>Livro:</strong>
+  <%= @booking.book.title %>
+</p>
+
+<p>
+  <strong>Inicio da reserva:</strong>
   <%= @booking.bookingStartDate %>
 </p>
 
 <p>
-  <strong>Bnookigenddate:</strong>
+  <strong>Fim da reserva:</strong>
   <%= @booking.bnookigEndDate %>
+</p>
+
+<p>
+  <strong>Usuário:</strong>
+  <%= @booking.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
