@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Livro:</strong>
+  <%= @devolution.loan.book.title %>
+</p>
+
+<p>
+  <strong>Usuário:</strong>
+  <%= @devolution.loan.user.name %>
+</p>
+
+<p>
+  <strong>Empresntado em:</strong>
+  <%= @devolution.loan.loanDate %>
+</p>
+
+<p>
+  <strong>Devolvido em:</strong>
+  <%= @devolution.devolutionDate %>
+</p>
+
+<%= link_to 'Edit', edit_devolution_path(@devolution) %> |
+<%= link_to 'Back', devolutions_path %>

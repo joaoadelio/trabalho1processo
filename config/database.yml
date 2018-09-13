@@ -32,10 +32,14 @@ development:
   username: postgres
 
   # The password associated with the postgres role (username).
+<<<<<<< HEAD
 
 
 
   password: banco
+=======
+  password: flex094212
+>>>>>>> e830d3e470b7bd7181c2ffb2ed1f14d5ee12eefd
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
