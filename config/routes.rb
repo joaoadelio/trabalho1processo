@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :loans
+  resources :bookings
   root to: redirect('/admin')
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
