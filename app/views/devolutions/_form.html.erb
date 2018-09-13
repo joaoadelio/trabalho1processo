@@ -1,0 +1,22 @@
+<%= form_with(model: devolution, local: true) do |form| %>
+  <% if devolution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(devolution.errors.count, "error") %> prohibited this devolution from being saved:</h2>
+
+      <ul>
+      <% devolution.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :devolutionDate %>
+    <%= form.date_select :devolutionDate, id: :devolution_devolutionDate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

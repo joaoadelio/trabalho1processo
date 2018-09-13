@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :devolutions
   resources :loans
   resources :bookings
   root to: redirect('/admin')

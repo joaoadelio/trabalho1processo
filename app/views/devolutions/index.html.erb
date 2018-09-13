@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Devolutions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Devolutiondate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devolutions.each do |devolution| %>
+      <tr>
+        <td><%= devolution.devolutionDate %></td>
+        <td><%= link_to 'Show', devolution %></td>
+        <td><%= link_to 'Edit', edit_devolution_path(devolution) %></td>
+        <td><%= link_to 'Destroy', devolution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Devolution', new_devolution_path %>
