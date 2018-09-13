@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loanDate: 2018-09-13
+  returnDate: 2018-09-13
+
+two:
+  loanDate: 2018-09-13
+  returnDate: 2018-09-13
