@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label "Livro" %>
+    <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title, livro.id]} %>
+  </div>
+
+  <div class="field">
     <%= form.label :loanDate %>
     <%= form.date_select :loanDate, id: :loan_loanDate %>
   </div>
@@ -19,6 +24,11 @@
   <div class="field">
     <%= form.label :returnDate %>
     <%= form.date_select :returnDate, id: :loan_returnDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Usuário" %>
+    <%= form.select :user_id, User.all.order(:name).collect {|usuario| [usuario.name, usuario.id]} %>
   </div>
 
   <div class="actions">
