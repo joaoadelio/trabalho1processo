@@ -3,4 +3,5 @@ class Book < ApplicationRecord
   belongs_to :language
   belongs_to :bookcase
   has_many :bookings
+  has_many :loans
 end
