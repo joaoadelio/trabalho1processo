@@ -44,6 +44,18 @@
     <%= form.select :bookcase_id, Bookcase.all.order(:name).collect {|estante| [estante.name, estante.id]} %>
   </div>
 
+    <% if(!@book.image.file.nil?) %>
+      <%= image_tag(@book.image.thumb.url) %>
+    <% end %>
+
+
+  <%= form.check_box :remove_image %> Remover Imagem
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, multiple:false %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
