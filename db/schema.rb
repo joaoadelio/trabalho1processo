@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180913223018) do
     t.integer "bookcase_id"
     t.boolean "active"
     t.string "image"
+    t.string "publisher"
   end
 
   create_table "books_disciplines", id: false, force: :cascade do |t|
