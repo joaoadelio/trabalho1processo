@@ -21,11 +21,6 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
-        <td>
-          <% book.loans.each do |loan|%>
-            <%=loan.devolution.devolutionDate %><span>, </span>
-          <%end%>
-        </td>
         <td><%= book.numberPages %></td>
         <td>
           <% book.disciplines.order(:name).each do |discipline|%>

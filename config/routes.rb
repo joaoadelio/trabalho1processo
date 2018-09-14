@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :devolutions
-  resources :loans
+  resources :loans do
+    collection do
+      get 'devolver'
+      post 'devolver'
+    end
+  end
   resources :bookings
   root to: redirect('/admin')
 

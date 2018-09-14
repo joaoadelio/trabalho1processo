@@ -1,5 +1,5 @@
 class Loan < ApplicationRecord
   belongs_to :book
   belongs_to :user
-  belongs_to :devolution
+  belongs_to :devolution, required: false
 end

@@ -10,6 +10,16 @@ class LoansController < ApplicationController
   # GET /loans/1
   # GET /loans/1.json
   def show
+
+  end
+
+  def devolver
+    @loan = Loan.find(params[:id])
+    @devolution = Devolution.new
+    @devolution.devolutionDate = Time.now
+    @loan.devolution = @devolution
+    @loan.save
+    redirect_to @loan, notice: 'Devolução realizada com sucesso'
   end
 
   # GET /loans/new
