@@ -14,11 +14,12 @@
   <strong>Data Retorno:</strong>
   <%= @loan.returnDate %>
 </p>
-
 <p>
   <strong>Usuário:</strong>
   <%= @loan.user.name %>
 </p>
+
+<span><%= link_to 'Devolver', devolver_loans_path(id: @loan.id) %></span>
 
 <%= link_to 'Edit', edit_loan_path(@loan) %> |
 <%= link_to 'Back', loans_path %>

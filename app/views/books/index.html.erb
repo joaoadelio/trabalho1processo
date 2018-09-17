@@ -27,8 +27,8 @@
             <%=discipline.name %><span>, </span>
           <%end%>
         </td>
-        <td><%= book.language.name unless book.language.nil? %></td>
-        <td><%= book.bookcase.name unless book.bookcase.nil? %></td>
+        <td><%= book.language.name unless book.language.nil?%></td>
+        <td><%= book.bookcase.name unless book.bookcase.nil?%></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

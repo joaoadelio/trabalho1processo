@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+
+  <% if(!@book.image.file.nil?) %>
+    <%= image_tag(@book.image.med.url) %>
+  <% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
@@ -30,6 +35,25 @@
   <strong>Estante:</strong>
   <%= @book.bookcase.name unless @book.bookcase.nil? %>
 </p>
+
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Emprestado em:</th>
+    <th>Emprestado Até:</th>
+    <th>Devolvido em:</th>
+    <th>Ações</th>
+  </tr>
+    <% @book.loans.each do |loan|%>
+      <tr>
+        <td><%= loan.user.name %></td>
+        <td><%= loan.loanDate %></td>
+        <td><%= loan.returnDate %></td>
+        <td><%= loan.devolution.devolutionDate unless loan.devolution.nil?%></td>
+        <td><%= link_to 'Visualizar Emprestimo', loan%></td>
+      </tr>
+    <%end%>
+</table>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
