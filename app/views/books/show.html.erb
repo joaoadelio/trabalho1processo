@@ -23,12 +23,12 @@
 </p>
 <p>
   <strong>Linguagem:</strong>
-  <%= @book.language.name %>
+  <%= @book.language.name unless @book.language.nil? %>
 </p>
 
 <p>
   <strong>Estante:</strong>
-  <%= @book.bookcase.name %>
+  <%= @book.bookcase.name unless @book.bookcase.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
