@@ -51,12 +51,40 @@ class BookingsController < ApplicationController
       end
       return @livre
     end
+    #fim do método
 
+    # metodo para verificar se possui empréstimo para aquele período
+    def emprestimo
+      @livre = true
+      @emprestimos = Loan.all.where(:book_id => @booking.book_id)
+
+      @emprestimos.each do |emprestimo|
+
+        if( emprestimo.loanDate <= @booking.bookingStartDate && @booking.bookingStartDate <= emprestimo.returnDate)
+          @livre = false
+          break
+        end
+
+        if( emprestimo.loanDate <= @booking.bnookigEndDate && @booking.bnookigEndDate <= emprestimo.returnDate)
+          @livre = false
+          break
+        end
+
+        if( emprestimo.loanDate >= @booking.bookingStartDate && emprestimo.bnookigEndDate <= @booking.returnDate )
+          @livre = false
+          break
+        end
+
+      end
+      return @livre
+    end
     #fim do método
 
     respond_to do |format|
       if(!reserva)
-        format.html { redirect_to bookings_path, notice: 'Já existe uma reserva deste livro para este período.' }
+        format.html { redirect_to bookings_path, notice: 'Já existe uma RESERVA deste livro para este período.' }
+      elsif (!emprestimo)
+        format.html { redirect_to bookings_path, notice: 'Já existe um EMPRÉSTIMO deste livro para este período.' }
       else
         if @booking.save
           format.html { redirect_to @booking, notice: 'Booking was successfully created.' }

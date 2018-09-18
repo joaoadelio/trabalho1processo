@@ -35,6 +35,7 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     @loan = Loan.new(loan_params)
+    @book = Book.find(@loan.book_id)
 
     respond_to do |format|
       if @loan.save

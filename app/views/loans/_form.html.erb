@@ -18,7 +18,7 @@
 
       <div class="form-group">
         <%= form.label "Livro", for: 'book-select' %>
-        <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title[0...50]+'[...]', livro.id]},{}, class: 'form-control', id: 'book-select' %>
+        <%= form.select :book_id, Book.all.where(:active => true).order(:title).collect {|livro| [livro.title[0...50]+'[...]', livro.id]},{}, class: 'form-control', id: 'book-select' %>
       </div>
 
       <div class="form-group">
