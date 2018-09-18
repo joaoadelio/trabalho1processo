@@ -22,7 +22,8 @@ class LoansController < ApplicationController
     @devolution.devolutionDate = Time.now
     @loan.devolution = @devolution
     @loan.save
-    redirect_to @loan, notice: 'Devolução realizada com sucesso'
+    redirect_to params[:redirect], notice: 'Devolução realizada com sucesso' unless params[:redirect].blank?
+    redirect_to @loan, notice: 'Devolução realizada com sucesso' unless !params[:redirect].blank?
   end
 
   # GET /loans/new
@@ -72,7 +73,7 @@ class LoansController < ApplicationController
         @book.active = false
         @book.save
 
-      
+
         if @loan.save
           format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
           format.json { render :show, status: :created, location: @loan }

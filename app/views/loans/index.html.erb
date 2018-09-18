@@ -22,7 +22,7 @@
         <td><%= format_date loan.returnDate %></td>
         <td>
           <%= format_date loan.devolution.devolutionDate unless loan.devolution.nil? %>
-          <%= link_to 'Devolver', devolver_loans_path(id: loan.id), class: 'btn btn-secondary', data: {confirm: 'Tem certeza que deseja devolver este livro?'} unless !loan.devolution.nil? %>
+          <%= link_to 'Devolver', devolver_loans_path(id: loan.id, redirect: loans_path), class: 'btn btn-secondary', data: {confirm: 'Tem certeza que deseja devolver este livro?'} unless !loan.devolution.nil? %>
         </td>
         <td><%= loan.user.name %></td>
         <td style="width: 20%">

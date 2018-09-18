@@ -17,6 +17,22 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
+  def converterReserva
+    @reserva = Booking.find(params[:id])
+    @emprestimo = Loan.new
+    @emprestimo.book_id = @reserva.book_id
+    @emprestimo.loanDate = @reserva.bookingStartDate
+    @emprestimo.returnDate = @reserva.bnookigEndDate
+    @emprestimo.created_at = @reserva.created_at
+    @emprestimo.updated_at = Time.now
+    @emprestimo.user_id = @reserva.user_id
+
+    @emprestimo.save
+    @reserva.destroy
+
+    redirect_to loans_path, notice: 'Reserva convertida com sucesso realizada com sucesso'
+  end
+
   # GET /bookings/1/edit
   def edit
   end

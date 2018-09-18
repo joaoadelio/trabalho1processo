@@ -6,8 +6,13 @@ Rails.application.routes.draw do
       post 'devolver'
     end
   end
-  resources :bookings
-  root to: redirect('/admin')
+  resources :bookings do
+    collection do
+      get 'converterReserva'
+      post 'converterReserva'
+    end
+  end
+  root to: redirect('/')
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :books
