@@ -38,17 +38,48 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     @loan = Loan.new(loan_params)
-    @book = Book.find(@loan.book_id)
-    @book.active = false
-    @book.save
 
+    def reserva
+      @livre = true
+      @reservas = Booking.all.where(:book_id => @loan.book_id)
+
+      @reservas.each do |reserva|
+
+        if( reserva.bookingStartDate <= @loan.loanDate && @loan.loanDate <= reserva.bnookigEndDate)
+          @livre = false
+          break
+        end
+
+        if( reserva.bookingStartDate <= @loan.returnDate && @loan.returnDate <= reserva.bnookigEndDate)
+          @livre = false
+          break
+        end
+
+        if( reserva.bookingStartDate >= @loan.loanDate && reserva.bnookigEndDate <= @loan.returnDate )
+          @livre = false
+          break
+        end
+
+      end
+      return @livre
+    end
     respond_to do |format|
-      if @loan.save
-        format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
-        format.json { render :show, status: :created, location: @loan }
+
+      if(!reserva)
+        format.html { redirect_to loans_path, notice: 'Há uma RESERVA deste livro para este período.' }
       else
-        format.html { render :new }
-        format.json { render json: @loan.errors, status: :unprocessable_entity }
+        @book = Book.find(@loan.book_id)
+        @book.active = false
+        @book.save
+
+      
+        if @loan.save
+          format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
+          format.json { render :show, status: :created, location: @loan }
+        else
+          format.html { render :new }
+          format.json { render json: @loan.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
