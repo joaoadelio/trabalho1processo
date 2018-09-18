@@ -15,6 +15,9 @@ class LoansController < ApplicationController
 
   def devolver
     @loan = Loan.find(params[:id])
+    @book = Book.find(@loan.book_id)
+    @book.active = true
+    @book.save
     @devolution = Devolution.new
     @devolution.devolutionDate = Time.now
     @loan.devolution = @devolution
@@ -36,6 +39,8 @@ class LoansController < ApplicationController
   def create
     @loan = Loan.new(loan_params)
     @book = Book.find(@loan.book_id)
+    @book.active = false
+    @book.save
 
     respond_to do |format|
       if @loan.save
@@ -51,6 +56,9 @@ class LoansController < ApplicationController
   # PATCH/PUT /loans/1
   # PATCH/PUT /loans/1.json
   def update
+    @book = Book.find(@loan.book_id)
+    @book.active = false
+    @book.save
     respond_to do |format|
       if @loan.update(loan_params)
         format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
@@ -65,6 +73,9 @@ class LoansController < ApplicationController
   # DELETE /loans/1
   # DELETE /loans/1.json
   def destroy
+    @book = Book.find(@loan.book_id)
+    @book.active = true
+    @book.save
     @loan.destroy
     respond_to do |format|
       format.html { redirect_to loans_url, notice: 'Loan was successfully destroyed.' }
