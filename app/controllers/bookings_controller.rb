@@ -26,14 +26,47 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
 
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+    # metodo para verificar se possui reserva para aquele período
+    def reserva
+      @livre = true
+      @reservas = Booking.all.where(:book_id => @booking.book_id)
+
+      @reservas.each do |reserva|
+
+        if( reserva.bookingStartDate <= @booking.bookingStartDate && @booking.bookingStartDate <= reserva.bnookigEndDate)
+          @livre = false
+          break
+        end
+
+        if( reserva.bookingStartDate <= @booking.bnookigEndDate && @booking.bnookigEndDate <= reserva.bnookigEndDate)
+          @livre = false
+          break
+        end
+
+        if( reserva.bookingStartDate >= @booking.bookingStartDate && reserva.bnookigEndDate <= @booking.bnookigEndDate )
+          @livre = false
+          break
+        end
+
       end
+      return @livre
+    end
+
+    #fim do método
+
+    respond_to do |format|
+      if(!reserva)
+        format.html { redirect_to bookings_path, notice: 'Já existe uma reserva deste livro para este período.' }
+      else
+        if @booking.save
+          format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+          format.json { render :show, status: :created, location: @booking }
+        else
+          format.html { render :new }
+          format.json { render json: @booking.errors, status: :unprocessable_entity }
+        end
+      end
+
     end
   end
 

@@ -16,14 +16,14 @@
     <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title, livro.id]} %>
   </div>
 
-  <div class="field">
-    <%= form.label :bookingStartDate %>
-    <%= form.date_select :bookingStartDate, id: :booking_bookingStartDate %>
+  <div class="form-group">
+    <%= form.label 'Início da reserva:', for: 'booking_bookingStartDate' %>
+    <input type="date" class="form-control" name="booking[bookingStartDate]" id="booking_bookingStartDate" value="<%= @booking.bookingStartDate %>">
   </div>
 
-  <div class="field">
-    <%= form.label :bnookigEndDate %>
-    <%= form.date_select :bnookigEndDate, id: :booking_bnookigEndDate %>
+  <div class="form-group">
+    <%= form.label 'Fim da reserva:', for: 'booking_bnookigEndDate' %>
+    <input type="date" class="form-control" name="booking[bnookigEndDate]" id="booking_bnookigEndDate" value="<%= @booking.bnookigEndDate %>">
   </div>
 
   <div class="field">

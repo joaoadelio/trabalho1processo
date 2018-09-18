@@ -17,3 +17,7 @@
 /* Custom bootstrap variables must be set or imported *before* bootstrap.*/
 @import "bootstrap";
 
+#notice{
+  color: red;
+  font-weight: 600;
+}
