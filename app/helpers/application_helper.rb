@@ -1,9 +1,9 @@
 module ApplicationHelper
 
   def nav_link(title, path)
-    classValue = current_page?(path) ? 'active' : ''
-    content_tag(:li, class: classValue) do
-      link_to title, path
+    classValue = current_page?(path) ? 'list-group-item disabled' : 'list-group-item'
+    content_tag(:div) do
+      link_to title, path, class: classValue
     end
   end
 
@@ -14,4 +14,10 @@ module ApplicationHelper
       end
     end
   end
+
+  def format_date(date)
+    # formatting date: Aug, 31 2007 - 9:55PM
+    date.strftime("%d/%m/%Y")
+  end
+
 end

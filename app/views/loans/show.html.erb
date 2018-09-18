@@ -1,25 +1,78 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Livro:</strong>
-  <%= @loan.book.title %>
-</p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-9">
+            <h5>
+              <strong>Detalhamento de empréstimo de livro</strong>
+            </h5>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Editar', edit_loan_path(@loan), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'voltar', loans_path, class: 'btn btn-info btn-sm' %>
+          </div>
+        </div>
 
-<p>
-  <strong>Inicio Empréstimo:</strong>
-  <%= @loan.loanDate %>
-</p>
+        <h2><small>Título:</small><strong><%= @loan.book.title %></strong></h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5">
+            <% if(!@loan.book.image.file.nil?) %>
+              <%= image_tag(@loan.book.image.url, class: 'img-thumbnail') %>
+            <% else %>
+              <p class="text-center" style="color: gray; margin-top: 40%">Sem Imagem</p>
+            <% end %>
+          </div>
+          <div class="col-md-7">
+            <p><small>Autor: </small><strong><%= @loan.book.author %></strong></p>
+            <p><small>Número de páginas: </small><strong><%= @loan.book.numberPages %></strong></p>
+            <p>
+              <small>Disciplinas:</small>
+                <strong>
+                  <% @loan.book.disciplines.order(:name).each do |discipline|%>
+                    <%=discipline.name %><span>, </span>
+                  <%end%>
+                </strong>
+            <p><small>Biblioteca: </small><strong><%= @loan.book.bookcase.library.name %></strong></p>
+            <p><small>Estante: </small><strong><%= @loan.book.bookcase.name %></strong></p>
+            <p><small>Linguagem: </small><strong><%= @loan.book.language.name %></strong></p>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-md-3">
+            <p class="text-center"><strong><small>Dados do empréstimo:</small></strong></p>
+          </div>
+          <div class="col-md-3">
+            <p class="text-center"><small>Data do empréstimo:</small></p>
+            <p class="text-center"><strong><%= format_date @loan.loanDate %></strong></p>
+          </div>
+          <div class="col-md-3">
+            <p class="text-center"><small>Devolver até:</small></p>
+            <p class="text-center"><strong><%= format_date @loan.returnDate %></strong></p>
+          </div>
+          <div class="col-md-3">
+            <p class="text-center"><small>Devolvido em:</small></p>
+            <p class="text-center">
+              <strong>
+                <%= format_date @loan.devolution.devolutionDate unless @loan.devolution.nil? %>
+                <%= link_to 'Devolver', devolver_loans_path(id: @loan.id), class: 'btn btn-secondary', data: {confirm: 'Tem certeza que deseja devolver este livro?'} unless !@loan.devolution.nil? %>
+              </strong>
+            </p>
+          </div>
+        </div>
 
-<p>
-  <strong>Data Retorno:</strong>
-  <%= @loan.returnDate %>
-</p>
-<p>
-  <strong>Usuário:</strong>
-  <%= @loan.user.name %>
-</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<span><%= link_to 'Devolver', devolver_loans_path(id: @loan.id) %></span>
 
-<%= link_to 'Edit', edit_loan_path(@loan) %> |
-<%= link_to 'Back', loans_path %>
+
+

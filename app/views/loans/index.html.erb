@@ -1,28 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Loans</h1>
+<h1>Empréstimos <span><%= link_to 'Novo empréstimo', new_loan_path, class: 'btn btn-success' %></span></h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Livro</th>
-      <th>Inicio Empréstimo</th>
+      <th>Início Empréstimo</th>
       <th>Fim do Empréstimo</th>
+      <th>Devolvido</th>
       <th>Usuário</th>
-      <th colspan="3"></th>
+      <th>Ações</th>
     </tr>
   </thead>
 
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
-        <td><%= loan.book.title %></td>
-        <td><%= loan.loanDate %></td>
-        <td><%= loan.returnDate %></td>
+        <td><strong><%= loan.book.title %></strong></td>
+        <td><%= format_date loan.loanDate %></td>
+        <td><%= format_date loan.returnDate %></td>
+        <td>
+          <%= format_date loan.devolution.devolutionDate unless loan.devolution.nil? %>
+          <%= link_to 'Devolver', devolver_loans_path(id: loan.id), class: 'btn btn-secondary', data: {confirm: 'Tem certeza que deseja devolver este livro?'} unless !loan.devolution.nil? %>
+        </td>
         <td><%= loan.user.name %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="width: 20%">
+          <%= link_to 'Exibir', loan, class: 'btn btn-info btn-sm' %>
+          <%= link_to 'Editar', edit_loan_path(loan), class: 'btn btn-warning btn-sm' %>
+          <%= link_to 'Excluir', loan, method: :delete, class: 'btn btn-danger btn-sm',  data: { confirm: 'Tem certeza que deseja excluir?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +37,3 @@
 
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>

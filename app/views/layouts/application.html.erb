@@ -10,10 +10,19 @@
 
   <body>
   <div class="container-fluid">
-    <%= render 'layouts/menu' %>
-    <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="row">
+      <div class="col-md-2">
+        <%= render 'layouts/menu' %>
+      </div>
+      <div class="col-md-10">
+        <%= yield %>
+      </div>
+    </div>
+
+<!--    <p id="notice"><%#= notice %></p>-->
+
+
   </div>
 
   </body>

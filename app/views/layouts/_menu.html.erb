@@ -1,38 +1,204 @@
-<!--<nav class="navbar navbar-default">-->
-<!--  <div class="container-fluid">-->
-<!--    <!-- Brand and toggle get grouped for better mobile display -->
-<!--    <div class="navbar-header">-->
-<!--      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-<!--        <span class="sr-only">Toggle navigation</span>-->
-<!--        <span class="icon-bar"></span>-->
-<!--        <span class="icon-bar"></span>-->
-<!--        <span class="icon-bar"></span>-->
-<!--      </button>-->
-<!--      <a class="navbar-brand" href="<%#= root_path %>">Biblioteca</a>-->
-<!--    </div>-->
 
-<!--    <!-- Collect the nav links, forms, and other content for toggling -->
-<!--    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-<!--      <ul class="nav navbar-nav">-->
 
-        <%#= nav_link 'Nova biblioteca', new_library_path %>
-        <%#= nav_link 'Nova estante', new_bookcase_path %>
-        <%#= nav_link 'Novo livro', new_book_path %>
+      <div class="list-group">
 
-<!--      </ul>-->
+        <%= nav_link 'Inicio',       root_path  %><pre>   </pre>
 
-<!--      <ul class="nav navbar-nav navbar-right">-->
-<!--        <p class="navbar-text pull-right">-->
-          <%# if user_signed_in? %>
-<!--            Logged in as <strong><%#= current_user.email %></strong>.-->
-<!--            <%#= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |-->
-            <%#= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-          <%# else %>
-<!--            <%#= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |-->
-            <%#= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-          <%# end %>
-<!--        </p>-->
-<!--      </ul>-->
-<!--    </div><!-- /.navbar-collapse -->
-<!--  </div><!-- /.container-fluid -->
-<!--</nav>-->
+      </div>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a id="biblioteca" class=" collapsed btn btn-primary btn-block " role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Bibliotecas
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Nova',   new_library_path  %>
+                <%= nav_link 'Bibliotecas',   libraries_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a id="livro" class="collapsed btn btn-primary btn-block " role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Livros
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Novo', new_book_path  %>
+                <%= nav_link 'Livros', books_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+              <a id="estante" class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Estantes
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Nova',   new_bookcase_path  %>
+                <%= nav_link 'Estantes',   bookcases_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading5">
+            <h4 class="panel-title">
+              <a id="linguagem" class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                Linguagens
+              </a>
+            </h4>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Nova',   new_language_path  %>
+                <%= nav_link 'Linguagens',   languages_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading4">
+            <h4 class="panel-title">
+              <a id="disciplina" class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                disciplinas
+              </a>
+            </h4>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Nova',   new_discipline_path  %>
+                <%= nav_link 'Disiciplinas',   disciplines_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading6">
+            <h4 class="panel-title">
+              <a id="reserva" class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                Reservas
+              </a>
+            </h4>
+          </div>
+          <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Nova',   new_booking_path  %>
+                <%= nav_link 'Reservas',   bookings_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading7">
+            <h4 class="panel-title">
+              <a id="emprestimo" class="btn btn-primary btn-block collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                Empréstimos
+              </a>
+            </h4>
+          </div>
+          <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+            <div class="panel-body" style="padding-bottom: 10px">
+              <div class="list-group">
+                <%= nav_link 'Novo',   new_loan_path  %>
+                <%= nav_link 'Empréstimos',   loans_path  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script language="JavaScript">
+          $('.collapse').collapse({
+              toggle: false
+          });
+
+          $('#emprestimo').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#reserva').click(function () {
+              $('#collapse7').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#disciplina').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse7').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#linguagem').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse7').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#estante').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapse7').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#livro').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapse7').collapse('hide');
+              $('#collapseOne').collapse('hide');
+          });
+
+          $('#biblioteca').click(function () {
+              $('#collapse6').collapse('hide');
+              $('#collapse5').collapse('hide');
+              $('#collapse4').collapse('hide');
+              $('#collapseThree').collapse('hide');
+              $('#collapseTwo').collapse('hide');
+              $('#collapse7').collapse('hide');
+          });
+      </script>

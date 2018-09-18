@@ -1,37 +1,48 @@
-<%= form_with(model: loan, local: true) do |form| %>
-  <% if loan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+<div class="row">
+  <div class="col-md-3">
 
-      <ul>
-      <% loan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  </div>
+  <div class="col-md-6">
+    <%= form_with(model: loan, local: true) do |form| %>
+      <% if loan.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+
+          <ul>
+            <% loan.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label "Livro" %>
-    <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title, livro.id]} %>
-  </div>
+      <div class="form-group">
+        <%= form.label "Livro", for: 'book-select' %>
+        <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title[0...50]+'[...]', livro.id]},{}, class: 'form-control', id: 'book-select' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :loanDate %>
-    <%= form.date_select :loanDate, id: :loan_loanDate %>
-  </div>
+      <div class="form-group">
+        <%= form.label 'Data do empréstimo:', for: 'loan_loanDate' %>
+        <%#= form.date_select :loanDate, id: :loan_loanDate, class: 'form-control' %>
+        <input type="date" class="form-control" name="loan[loanDate]" id="loan_loanDate" value="<%= @loan.loanDate %>">
+      </div>
 
-  <div class="field">
-    <%= form.label :returnDate %>
-    <%= form.date_select :returnDate, id: :loan_returnDate %>
-  </div>
+      <div class="form-group">
+        <%= form.label 'Devolver até:', for: 'return-date' %>
+        <%#= form.date_select :returnDate, id: :loan_returnDate %>
+        <input type="date" class="form-control" name="loan[returnDate]" id="return-date" value="<%= @loan.returnDate %>">
+      </div>
 
-  <div class="field">
-    <%= form.label "Usuário" %>
-    <%= form.select :user_id, User.all.order(:name).collect {|usuario| [usuario.name, usuario.id]} %>
-  </div>
+      <div class="form-group">
+        <%= form.label "Usuário", for: 'user-select' %>
+        <%= form.select :user_id, User.all.order(:name).collect {|usuario| [usuario.name, usuario.id]},{}, class: 'form-control', id: 'user-select' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="form-group">
+        <%= form.submit 'Salvar', class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
+
+
