@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post 'converterReserva'
     end
   end
-  root to: redirect('/')
+  root to: redirect('/loans/')
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :books

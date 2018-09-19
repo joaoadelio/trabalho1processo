@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label "Livro" %>
-    <%= form.select :book_id, Book.all.order(:title).collect {|livro| [livro.title, livro.id]} %>
+    <%= form.select :book_id, Book.all.where('active = ? AND bookcase_id != ?' ,true, 3).order(:title).collect {|livro| [livro.title, livro.id]} %>
   </div>
 
   <div class="form-group">
