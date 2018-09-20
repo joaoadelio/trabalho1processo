@@ -1,59 +1,74 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-9">
+            <h5>
+              <strong>Detalhamento do livro</strong>
+            </h5>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Editar', edit_book_path(@book), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Voltar', books_path, class: 'btn btn-info btn-sm' %>
+          </div>
+        </div>
+
+        <h2><small>Título:</small><strong><%= @book.title %></strong></h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5">
+            <% if(!@book.image.file.nil?) %>
+              <%= image_tag(@book.image.med.url) %>
+            <% else %>
+              <p class="text-center" style="color: gray; margin-top: 40%">Sem Imagem</p>
+            <% end %>
+          </div>
+          <div class="col-md-7">
+            <p><strong>Author:</strong><%= @book.author %></p>
+            <p><strong>Número de Páginas:</strong><%= @book.numberPages %></p>
+            <p><strong>Disciplinas:</strong>
+              <% @book.disciplines.order(:name).each do |discipline|%>
+                <%=discipline.name %><span>, </span>
+              <%end%>
+            </p>
+            <p><strong>Linguagem:</strong><%= @book.language.name unless @book.language.nil? %></p>
+            <p><strong>Estante:</strong><%= @book.bookcase.name unless @book.bookcase.nil? %></p>
 
 
-  <% if(!@book.image.file.nil?) %>
-    <%= image_tag(@book.image.med.url) %>
-  <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+      <div class="card-footer">
+        <table class="table">
+          <tr>
+            <th>User</th>
+            <th>Emprestado em:</th>
+            <th>Emprestado Até:</th>
+            <th>Devolvido em:</th>
+            <th>Ações</th>
+          </tr>
+          <% @book.loans.each do |loan|%>
+            <tr>
+              <td><%= loan.user.name %></td>
+              <td><%= format_date loan.loanDate %></td>
+              <td><%= format_date loan.returnDate %></td>
+              <td><%= format_date loan.devolution.devolutionDate unless loan.devolution.nil?%></td>
+              <td><%= link_to 'Visualizar Emprestimo', loan%></td>
+            </tr>
+          <%end%>
+        </table>
 
-<p>
-  <strong>Numberpages:</strong>
-  <%= @book.numberPages %>
-</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Disciplinas:</strong>
-  <% @book.disciplines.order(:name).each do |discipline|%>
-    <%=discipline.name %><span>, </span>
-  <%end%>
-</p>
-<p>
-  <strong>Linguagem:</strong>
-  <%= @book.language.name unless @book.language.nil? %>
-</p>
 
-<p>
-  <strong>Estante:</strong>
-  <%= @book.bookcase.name unless @book.bookcase.nil? %>
-</p>
 
-<table class="table">
-  <tr>
-    <th>User</th>
-    <th>Emprestado em:</th>
-    <th>Emprestado Até:</th>
-    <th>Devolvido em:</th>
-    <th>Ações</th>
-  </tr>
-    <% @book.loans.each do |loan|%>
-      <tr>
-        <td><%= loan.user.name %></td>
-        <td><%= loan.loanDate %></td>
-        <td><%= loan.returnDate %></td>
-        <td><%= loan.devolution.devolutionDate unless loan.devolution.nil?%></td>
-        <td><%= link_to 'Visualizar Emprestimo', loan%></td>
-      </tr>
-    <%end%>
-</table>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>

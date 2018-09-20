@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Disciplines</h1>
+<h1>Disciplinas <span><%= link_to 'Nova Disciplina', new_discipline_path, class: 'btn btn-success' %></span></h1>
 
-<table>
+<table class="table table-hover text-left">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Ação</th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @disciplines.each do |discipline| %>
-      <tr>
-        <td><%= discipline.name %></td>
-        <td><%= link_to 'Show', discipline %></td>
-        <td><%= link_to 'Edit', edit_discipline_path(discipline) %></td>
-        <td><%= link_to 'Destroy', discipline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @disciplines.each do |discipline| %>
+    <tr>
+      <td><%= discipline.name %></td>
+      <td>
+        <%= link_to 'Exibir', discipline, class: 'btn btn-info btn-sm' %>
+        <%= link_to 'Editar', edit_discipline_path(discipline), class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'Excluir', discipline, method: :delete, class: 'btn btn-danger btn-sm',  data: { confirm: 'Tem certeza que deseja excluir?' } %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Discipline', new_discipline_path %>

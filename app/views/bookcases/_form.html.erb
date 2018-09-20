@@ -1,27 +1,36 @@
-<%= form_with(model: bookcase, local: true) do |form| %>
-  <% if bookcase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bookcase.errors.count, "error") %> prohibited this bookcase from being saved:</h2>
+<div class="row">
+  <div class="col-md-3">
 
-      <ul>
-      <% bookcase.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  </div>
+  <div class="col-md-6">
+    <%= form_with(model: bookcase, local: true) do |form| %>
+      <% if bookcase.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(bookcase.errors.count, "error") %> prohibited this bookcase from being saved:</h2>
+
+          <ul>
+            <% bookcase.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :bookcase_name %>
-  </div>
+      <div class="form-group">
+        <%= form.label "Nome" %>
+        <%= form.text_field :name, id: :bookcase_name, class: 'form-control' %>
+      </div>
 
-  <div class="field">
-    <%= form.label "Biblioteca" %>
-    <%= form.select :library_id, Library.all.order(:name).collect {|biblioteca| [biblioteca.name, biblioteca.id]} %>
-  </div>
+      <div class="form-group">
+        <%= form.label "Biblioteca" %>
+        <%= form.select :library_id, Library.all.order(:name).collect {|biblioteca| [biblioteca.name, biblioteca.id]},{}, class: 'form-control', id: 'language-select' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions">
+        <%= form.submit 'Inserir Estante', class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
+
+

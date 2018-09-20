@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180914002856) do
     t.datetime "updated_at", null: false
     t.integer "language_id"
     t.integer "bookcase_id"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.string "publisher"
     t.string "image"
   end

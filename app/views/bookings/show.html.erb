@@ -1,24 +1,27 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-9">
+            <h5>
+              <strong>Detalhamento da Reserva</strong>
+              <h2><small>Livro: </small><strong><%= @booking.book.title %></strong></h2>
+              <p><strong>Inicio da reserva: </strong><%= format_date @booking.bookingStartDate %></p>
+              <p><strong>Fim da reserva: </strong><%= format_date @booking.bnookigEndDate %></p>
+              <p><strong>Usuário: </strong><%= @booking.user.name %></p>
+            </h5>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Editar', edit_booking_path(@booking), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Voltar', bookings_path , class: 'btn btn-info btn-sm' %>
+          </div>
+        </div>
 
-<p>
-  <strong>Livro:</strong>
-  <%= @booking.book.title %>
-</p>
-
-<p>
-  <strong>Inicio da reserva:</strong>
-  <%= @booking.bookingStartDate %>
-</p>
-
-<p>
-  <strong>Fim da reserva:</strong>
-  <%= @booking.bnookigEndDate %>
-</p>
-
-<p>
-  <strong>Usuário:</strong>
-  <%= @booking.user.name %>
-</p>
-
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+        <!--        <h2><small>Título:</small><strong><%#= @loan.book.title %></strong></h2>-->
+      </div>
+    </div>
+  </div>
+</div>

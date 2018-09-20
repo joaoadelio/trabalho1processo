@@ -1,9 +1,24 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-9">
+            <h5>
+              <strong>Detalhamento da Disciplina</strong>
+              <h2><small>Nome:</small><strong><%= @discipline.name %></strong></h2>
+            </h5>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Editar', edit_discipline_path(@discipline), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Voltar', disciplines_path , class: 'btn btn-info btn-sm' %>
+          </div>
+        </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @discipline.name %>
-</p>
-
-<%= link_to 'Edit', edit_discipline_path(@discipline) %> |
-<%= link_to 'Back', disciplines_path %>
+        <!--        <h2><small>Título:</small><strong><%#= @loan.book.title %></strong></h2>-->
+      </div>
+    </div>
+  </div>
+</div>
